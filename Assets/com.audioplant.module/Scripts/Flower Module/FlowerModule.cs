@@ -5,10 +5,20 @@ using UnityEngine.UI;
 
 public class FlowerModule : MonoBehaviour
 {
-    private static int Index { get; set; }
+    private static float dS;
+    private static float target;
+    private static float speed;
+    private static int count;
+
     private static AudioSource AudioSource { get; set; }
     private static Image HollowImage { get; set; }
-    private static AudioClip[] AudioClips { get; set; }
+
+    private static float Progress
+    {
+        get => HollowImage.fillAmount;
+        set => HollowImage.fillAmount = value;
+    }
+
     public static Action<float> OnSoundPlaying { get; set; }
 
     private void Awake()
@@ -16,61 +26,33 @@ public class FlowerModule : MonoBehaviour
         HollowImage = transform.GetChild(1).GetComponent<Image>();
     }
 
-    public static void Init(FlowerModulePayload flowerModulePayload)
-    {
-        Index = 0;
-
-        AudioSource = flowerModulePayload.AudioSource;
-        AudioClips = flowerModulePayload.AudioClips;
-    }
-
-    public static void Play()
-    {
-        HollowImage.fillAmount = 1.0f / AudioClips.Length * Index;
-        AudioSource.clip = AudioClips[Index];
-        AudioSource.Play();
-    }
-
-    public static void Pause()
-    {
-        AudioSource.Pause();
-    }
-
-    public static void Next()
-    {
-        Index++;
-        if(Index > AudioClips.Length - 1)
-        {
-            Index = 0;
-        }
-
-        Play();
-    }
-
-    public static void Prev()
-    {
-        Index--;
-        if (Index < 0)
-        {
-            Index = AudioClips.Length - 1;
-        }
-
-        Play();
-    }
-
     private void Update()
     {
-        float[] spectrum = new float[256];
+        int _count = 256;
+        float[] spectrum = new float[_count];
         AudioSource.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
-        OnSoundPlaying?.Invoke(spectrum.Sum() / 256.0f);
+        OnSoundPlaying?.Invoke(spectrum.Sum() / _count);
 
         if (!AudioSource.isPlaying)
         {
             return;
         }
 
-        float target = 1.0f / AudioClips.Length * (Index + 1);
-        float speed = 1.0f / AudioClips.Length / AudioClips[Index].length;
-        HollowImage.fillAmount = Mathf.MoveTowards(HollowImage.fillAmount, target, speed * Time.deltaTime);
+        Progress = Mathf.MoveTowards(Progress, target, speed * Time.deltaTime);
+    }
+
+    public static void Init(FlowerModulePayload flowerModulePayload)
+    {
+        count = flowerModulePayload.Count;
+        AudioSource = flowerModulePayload.AudioSource;
+
+        dS = 1.0f / count;
+    }
+
+    public static void PlayOneShot(int index, float duration)
+    {
+        target = dS * (index + 1);
+        speed = dS / duration;
+        Progress = dS * index;
     }
 }
