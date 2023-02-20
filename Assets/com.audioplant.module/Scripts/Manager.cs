@@ -1,8 +1,12 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
+    [SerializeField] GameObject splash;
+    [SerializeField] GameObject game;
+
+    [Space(10)]
     [SerializeField] GameObject PlayBtn;
     [SerializeField] GameObject PauseBtn;
 
@@ -10,8 +14,13 @@ public class Manager : MonoBehaviour
     [SerializeField] GameObject next;
     [SerializeField] GameObject prev;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        splash.SetActive(true);
+        yield return new WaitForSeconds(3.5f);
+        splash.SetActive(false);
+        game.SetActive(true);
+
         FlowerModule.Init(new FlowerModulePayload() 
         { 
             AudioSource = GameObject.Find("Voice").GetComponent<AudioSource>(),

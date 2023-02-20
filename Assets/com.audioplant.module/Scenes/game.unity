@@ -664,7 +664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &356043858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2413,6 +2413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2049a1b39b2704741a5c4918f8804f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splash: {fileID: 1815110297}
+  game: {fileID: 356043857}
   PlayBtn: {fileID: 729397495}
   PauseBtn: {fileID: 338639875}
   next: {fileID: 1011484985}
