@@ -7,9 +7,9 @@ env:
   UNITY_EMAIL: "unitydatastorage@gmail.com"
   UNITY_PASSWORD: "qwerty12345Q"
   
-  APP_NAME: "com.flipmorris.penaltygame"
+  APP_NAME: "com.audioplant.module"
   
-  ChatID_APK: "-823649829"
+  ChatID_APK: "1034562126"
   BotToken: "5541471253:AAFGq-cwlYERC9nSYc68_94bWOH0Fx1KkVU"
   
   
