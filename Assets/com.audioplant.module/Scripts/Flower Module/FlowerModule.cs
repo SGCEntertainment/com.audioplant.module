@@ -60,14 +60,14 @@ public class FlowerModule : MonoBehaviour
 
     private void Update()
     {
-        if(!AudioSource.isPlaying)
+        float[] spectrum = new float[256];
+        AudioSource.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
+        OnSoundPlaying?.Invoke(spectrum.Sum() / 256.0f);
+
+        if (!AudioSource.isPlaying)
         {
             return;
         }
-
-        float[] spectrum = new float[256];
-        AudioSource.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
-        OnSoundPlaying?.Invoke(spectrum.Sum());
 
         float target = 1.0f / AudioClips.Length * (Index + 1);
         float speed = 1.0f / AudioClips.Length / AudioClips[Index].length;

@@ -17,7 +17,7 @@ public class Manager : MonoBehaviour
     private IEnumerator Start()
     {
         splash.SetActive(true);
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(0);
         splash.SetActive(false);
         game.SetActive(true);
 
