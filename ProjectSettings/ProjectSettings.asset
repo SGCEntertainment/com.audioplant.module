@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: com.flipmorris.penaltygame
+  productName: Flower Sound
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -154,7 +154,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.flipmorris.penaltygame
+    Android: com.audioplant.module
     Standalone: com.DefaultCompany.2DProject
   buildNumber:
     Standalone: 0
@@ -272,7 +272,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: a438623f174c27945861c353e963f9d7, type: 3}
+      m_Icon: {fileID: 2800000, guid: 4adb405ff3785e54298d22b379fcca32, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
